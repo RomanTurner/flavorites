@@ -27,6 +27,10 @@ gem 'rack-cors'
 gem 'awesome_print'
 gem 'active_model_serializers'
 gem 'faker'
+gem 'nokogiri'
+gem 'httparty'
+gem 'kimurai'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'

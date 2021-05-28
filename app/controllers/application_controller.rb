@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
     if auth_header
       token = auth_header.split(' ')[1]
       begin
-        JWT.decode(towken, ENV["SUPER_SECRET_KEY"], true, alogrithm: 'HS256')
+        JWT.decode(token, ENV["SUPER_SECRET_KEY"], true, alogrithm: 'HS256')
       rescue JWT::DecodeError 
         nil
       end

@@ -9,6 +9,11 @@ class SessionsController < ApplicationController
         end
     end
 
+    def index
+        #binding.pry
+        render json: @@user, status: :accepted
+    end 
+
     private
 
     def session_params
@@ -17,3 +22,33 @@ class SessionsController < ApplicationController
 
 end
 
+
+=begin 
+
+1. Create User - Sign up
+    Validate username ,validates passwordπ
+    Bcrypt salts/hashes password
+    stored in database
+
+    frontend-> redirect to login 
+
+2. frontend form has username/password 
+    sends POST {user: {username: x, password: x}} 
+    to route /sessions
+
+    create = create a token. 
+    if the user exists, and if the password is valid then you get 
+        a token. 
+        aka you are signed-in 
+
+3.  frontend recieve  user info/ jwt token
+        save to token to local storage
+        The user has the token -Its ID- for the remainder of the session
+        log out- delete token from local storage 
+
+4. Token permissions
+        make restful requests - with token in header
+        This is where we auth our jwt token'
+
+
+=end
