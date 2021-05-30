@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :recipes
   resources :users
   resources :sessions, only: [:create, :index]
+  get '/recipes_search/', to: 'recipes#search', as: :search
 end

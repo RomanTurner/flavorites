@@ -11,6 +11,12 @@ class RecipesController < ApplicationController
     render json: @recipe
     end 
 
+    def search  
+        recipes = Recipe.where('title like ?', "%#{params[:search]}%")
+        binding.pry
+     render json: {recipes: recipes}
+    end 
+
 private 
     
     def find_recipe

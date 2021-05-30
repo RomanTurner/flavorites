@@ -3,7 +3,7 @@ class MealPlanRecipesController < ApplicationController
 
     def index
         @meal_plan_recipes = MealPlanRecipe.all
-        render json: {plans: @meal_plan_recipes}
+        render json: @meal_plan_recipes
     end
 
 
