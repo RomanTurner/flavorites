@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_26_062657) do
+ActiveRecord::Schema.define(version: 2021_06_01_161903) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "follows", force: :cascade do |t|
@@ -38,6 +39,14 @@ ActiveRecord::Schema.define(version: 2021_05_26_062657) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
+    t.string "unassigned"
+    t.string "monday"
+    t.string "tuesday"
+    t.string "wednesday"
+    t.string "thursday"
+    t.string "friday"
+    t.string "saturday"
+    t.string "sunday"
     t.index ["user_id"], name: "index_meal_plans_on_user_id"
   end
 
@@ -46,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_05_26_062657) do
     t.string "keywords"
     t.string "metadata"
     t.string "main_img"
-    t.string "title"
+    t.citext "title"
     t.string "description"
     t.string "ingriedients"
     t.string "instructions"
@@ -54,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_05_26_062657) do
     t.string "tips"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_recipes_on_title", unique: true
   end
 
   create_table "users", force: :cascade do |t|

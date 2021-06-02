@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
     end
 
     def index
-        #binding.pry
         render json: @@user, status: :accepted
     end 
 

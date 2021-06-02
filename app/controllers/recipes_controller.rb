@@ -12,8 +12,7 @@ class RecipesController < ApplicationController
     end 
 
     def search  
-        recipes = Recipe.where('title like ?', "%#{params[:search]}%")
-        binding.pry
+     recipes = Recipe.where('title like ?', "%#{params[:search]}%")
      render json: {recipes: recipes}
     end 
 

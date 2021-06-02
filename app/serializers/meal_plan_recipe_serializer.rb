@@ -2,15 +2,41 @@ class MealPlanRecipeSerializer < ActiveModel::Serializer
   attributes :id, :recipe, :meal_plan
 
   def meal_plan 
-   object.meal_plan.id
+   object.meal_plan.id,
+   object.meal_plan.unassigned,
+   object.meal_plan.monday,
+   object.meal_plan.tuesday,
+   object.meal_plan.wednesday,
+   object.meal_plan.thursday,
+   object.meal_plan.friday,
+   object.meal_plan.saturday,
+   object.meal_plan.sunday,
   end
-
-  def recipe
+  
+  def meal_plan_recipes
+  #binding.pry
+  object.meal_plan_recipes.map do |mpr|
     {
-      title: object.recipe['title'],
-      img: object.recipe['main_img'],
-      id: object.recipe['id'],
+      mprid: mpr.id, 
+      main_img: mpr.recipe.main_img, 
+      id: mpr.recipe.id
     }
   end
-
 end
+
+
+  
+end
+
+
+
+
+
+
+# def recipe
+#   {
+  #     title: object.recipe['title'],
+  #     main_img: object.recipe['main_img'],
+  #     id: object.recipe['id'],
+  #   }
+# end

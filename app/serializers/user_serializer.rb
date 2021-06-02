@@ -18,13 +18,23 @@ class UserSerializer < ActiveModel::Serializer
        { 
          title: plan.title,
          id: plan.id,
-         recipes: plan.recipes.collect do |recipe|
-          {
-           id:recipe.id, 
-           title:recipe.title
-          }
-        end
+         unassigned: plan.unassigned,
+         monday: plan.monday,
+         tuesday: plan.tuesday,
+         wednesday: plan.wednesday,
+         thursday: plan.thursday,
+         friday: plan.friday,
+         saturday: plan.saturday,
+         sunday: plan.sunday,
+         meal_plan_recipes: plan.meal_plan_recipes.map do |mpr|
+       {
+         mprid: mpr.id, 
+         main_img: mpr.recipe.main_img, 
+         id: mpr.recipe.id, 
+         title: mpr.recipe.title,
        }
+      end
+      }
     end 
   end
 

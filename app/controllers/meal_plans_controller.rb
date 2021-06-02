@@ -12,7 +12,7 @@ class MealPlansController < ApplicationController
     end
     
     def create 
-        @meal_plan = MealPlan.new(meal_plan_params) 
+        @meal_plan = MealPlan.new(title: params[:title]) 
         @meal_plan.user = @@user
         if @meal_plan.save
             render json: @meal_plan, status: :ok
@@ -22,6 +22,7 @@ class MealPlansController < ApplicationController
     end
 
     def update
+        binding.pry
         if @meal_plan.update(meal_plan_params)
             render json: @meal_plan, status: :ok
         else
@@ -41,10 +42,6 @@ class MealPlansController < ApplicationController
     
     def find_meal_plan
         @meal_plan = MealPlan.find_by(id: params[:id])
-    end
-
-    def meal_plan_params
-        params.require(:meal_plan).permit(:title)
     end
     
 end
