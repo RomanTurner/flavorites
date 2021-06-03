@@ -1,5 +1,5 @@
 class MealPlansController < ApplicationController
-  before_action :find_meal_plan, only: [:update, :destroy]
+  before_action :find_meal_plan, only: [:update, :destroy, :show]
 
     def index
         @meal_plans = MealPlan.all
@@ -7,7 +7,6 @@ class MealPlansController < ApplicationController
     end
 
     def show
-        @meal_plan = MealPlan.find_by(id: params[:id])
         render json: @meal_plan, status: :accepted
     end
     
@@ -22,10 +21,18 @@ class MealPlansController < ApplicationController
     end
 
     def update
-        binding.pry
-        if @meal_plan.update(meal_plan_params)
+         if @meal_plan.update(
+            unassigned: params[:Unassigned], 
+            monday: params[:Monday],
+            tuesday: params[:Tuesday],
+            wednesday: params[:Wednesday],
+            thursday: params[:Thursday],
+            friday: params[:Friday],
+            saturday: params[:Saturday],
+            sunday: params[:Sunday],
+         )
             render json: @meal_plan, status: :ok
-        else
+         else
             render json: {message: "You fucked up.", errors: @meal_plan.errors}, status: :not_acceptable
         end
     end
@@ -45,3 +52,6 @@ class MealPlansController < ApplicationController
     end
     
 end
+
+
+          
