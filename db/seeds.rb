@@ -4,7 +4,7 @@ MealPlan.destroy_all
 Follow.destroy_all
 User.destroy_all
 
-User.create(first_name: "kai", last_name: "saviour", bio: Faker::Fantasy::Tolkien.poem, password:"ABC", username:"god")
+User.create(first_name: "kai", last_name: "saviour", bio: Faker::Fantasy::Tolkien.poem, password:"ABC", username:"Admin")
 
 puts "Creeeeeating Users"
 10.times do 
@@ -27,12 +27,13 @@ Follow.create(user_id: followers[0].id, following_id:followers[1].id)
 end
 
 puts "Creating MealPlans 🌯🍴"
-10.times do 
+8.times do 
 MealPlan.create(title:Faker::Hipster.sentence(word_count: 3), user:User.all.sample)
+MealPlan.create(title:Faker::Hipster.sentence(word_count: 3), user:User.find_by(username:"Admin"))
 end
 
 puts "Creating Meal Plan Recipes 📝"
-50.times do
+300.times do
 meal_plan = MealPlan.all.sample
 mpr = MealPlanRecipe.create(meal_plan: meal_plan, recipe: Recipe.all.sample)
 meal_plan.update(unassigned: meal_plan.unassigned<<mpr.id)
