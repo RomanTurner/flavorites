@@ -1,8 +1,11 @@
 class MealPlanSerializer < ActiveModel::Serializer
-  attributes :id,:title, :meal_plan_recipes, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :unassigned
+  attributes :id,:title, :meal_plan_recipes, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :unassigned, :user, :created_at
+
+def user
+ object.user.username
+end 
 
 def meal_plan_recipes
-  #binding.pry
   object.meal_plan_recipes.map do |mpr|
     {
       mprid: mpr.id, 
@@ -11,16 +14,7 @@ def meal_plan_recipes
       title: mpr.recipe.title
     }
   end
-end
 
 end
 
-#   def recipes 
-#   object.recipes.map do |recipe|
-#     { 
-#       title: recipe['title'],
-#       main_img: recipe['main_img'],
-#       id: recipe['id'],
-#     }
-#   end 
-#  end 
+end

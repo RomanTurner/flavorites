@@ -26,6 +26,7 @@ class UserSerializer < ActiveModel::Serializer
          friday: plan.friday,
          saturday: plan.saturday,
          sunday: plan.sunday,
+         created_at: plan.created_at,
          meal_plan_recipes: plan.meal_plan_recipes.map do |mpr|
        {
          mprid: mpr.id, 

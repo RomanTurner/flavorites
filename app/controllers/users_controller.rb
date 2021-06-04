@@ -8,10 +8,11 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.create(user_params)
-        if @user.valid?
-            render json: {login: true}, status: :created
+        if @user.valid? && @user.authenticate(user_params[:password])
+            @token = encode_token({user_id: @user.id})
+            render json: {user: UserSerializer.new(@user), jwt: @token}, status: :accepted
         else
-            render json: {message: "You fucked up."}, status: :not_acceptable
+            render json: {message: "Username Taken"}, status: :not_acceptable
         end
     end
 
