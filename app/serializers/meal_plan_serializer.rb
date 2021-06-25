@@ -14,7 +14,6 @@ def meal_plan_recipes
       title: mpr.recipe.title
     }
   end
-
 end
 
 end
