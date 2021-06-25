@@ -14,29 +14,16 @@ class MealPlanRecipeSerializer < ActiveModel::Serializer
   end
   
   def meal_plan_recipes
-  #binding.pry
-  object.meal_plan_recipes.map do |mpr|
-    {
+   object.meal_plan_recipes.map do |mpr|
+     {
       mprid: mpr.id, 
       main_img: mpr.recipe.main_img, 
       id: mpr.recipe.id
-    }
+     }
+    end
   end
-end
 
 
   
 end
 
-
-
-
-
-
-# def recipe
-#   {
-  #     title: object.recipe['title'],
-  #     main_img: object.recipe['main_img'],
-  #     id: object.recipe['id'],
-  #   }
-# end
